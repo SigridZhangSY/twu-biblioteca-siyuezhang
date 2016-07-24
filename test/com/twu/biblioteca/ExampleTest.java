@@ -48,6 +48,19 @@ public class ExampleTest {
 
     }
 
+    @Test
+    public void BookListDetailTest(){
+        bytes = new ByteArrayOutputStream();
+        console = System.out;
+        System.setOut(new PrintStream(bytes));
+        new BookList().Show();
+
+        String s = new String("Cay S.Horstmann/Gary Cornell, 2004");
+        assertThat(bytes.toString(), containsString(s));
+
+
+    }
+
     @After
     public void tearDown() throws Exception {
         System.setOut(console);
