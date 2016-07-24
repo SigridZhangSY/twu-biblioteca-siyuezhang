@@ -7,7 +7,9 @@ import org.junit.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
+import static org.hamcrest.core.StringContains.containsString;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 
 public class ExampleTest {
 
@@ -28,11 +30,24 @@ public class ExampleTest {
         console = System.out;
         System.setOut(new PrintStream(bytes));
         bibliotecaApp.main(args);
-        String s = new String("Welcome, Biblioteca is available!\n");
 
-        assertEquals(s, bytes.toString());
+        String s = new String("Welcome, Biblioteca is available!\n");
+        assertThat(bytes.toString(), containsString(s));
+    }
+
+    @Test
+    public void BookListTest(){
+        bytes = new ByteArrayOutputStream();
+        console = System.out;
+        System.setOut(new PrintStream(bytes));
+        new BookList().Show();
+
+        String s = new String("1. Core Java");
+        assertThat(bytes.toString(), containsString(s));
+
 
     }
+
     @After
     public void tearDown() throws Exception {
         System.setOut(console);
