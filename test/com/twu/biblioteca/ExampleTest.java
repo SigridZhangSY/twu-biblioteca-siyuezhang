@@ -30,7 +30,7 @@ public class ExampleTest {
         bytes = new ByteArrayOutputStream();
         console = System.out;
         System.setOut(new PrintStream(bytes));
-        bibliotecaApp.main(args);
+        new WelcomeMessage("Welcome, Biblioteca is available!").show();
 
         String s = new String("Welcome, Biblioteca is available!\n");
         assertThat(bytes.toString(), containsString(s));
@@ -43,7 +43,7 @@ public class ExampleTest {
         System.setOut(new PrintStream(bytes));
         new BookList().Show();
 
-        String s = new String("1. Core Java");
+        String s = new String("Core Java");
         assertThat(bytes.toString(), containsString(s));
 
 
@@ -76,13 +76,13 @@ public class ExampleTest {
         bytes = new ByteArrayOutputStream();
         console = System.out;
         System.setOut(new PrintStream(bytes));
-        new Choice("1").doChoice();
+        new Choice(1).doChoice("1");
 
         s = new String("1.Core Java");
         assertThat(bytes.toString(), containsString(s));
 
     }
-
+    git
     @After
     public void tearDown() throws Exception {
         System.setOut(console);

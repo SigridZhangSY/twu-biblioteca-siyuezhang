@@ -8,17 +8,18 @@ import java.util.ArrayList;
 public class BibliotecaApp {
 
     public static void main(String[] args) {
-        System.out.println("Welcome, Biblioteca is available!");
-
+        new WelcomeMessage("Welcome, Biblioteca is available!").show();
         MainMenu menu = new MainMenu();
         menu.show();
-
-        System.out.println("your choice : ");
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        try {
-            new Choice(br.readLine()).doChoice();
-        } catch (IOException e) {
-            e.printStackTrace();
+        boolean flag = false;
+        while (flag == false) {
+            System.out.println("your choice : ");
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+            try {
+                flag = new Choice(1).doChoice(br.readLine());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
