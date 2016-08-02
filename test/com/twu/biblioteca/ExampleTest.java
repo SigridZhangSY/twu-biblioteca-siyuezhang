@@ -82,7 +82,17 @@ public class ExampleTest {
         assertThat(bytes.toString(), containsString(s));
 
     }
-    git
+    @Test
+    public void should_show_valid_choice_message(){
+        bytes = new ByteArrayOutputStream();
+        console = System.out;
+        System.setOut(new PrintStream(bytes));
+        new Choice(1).doChoice("2");
+
+        String s = new String("Select a valid option!");
+        assertThat(bytes.toString(), containsString(s));
+    }
+
     @After
     public void tearDown() throws Exception {
         System.setOut(console);
