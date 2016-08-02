@@ -14,6 +14,7 @@ public class BookList {
             put("author", "Cay S.Horstmann/Gary Cornell");
             put("year published", "2004");
         }});
+        System.out.println("---------- Book List ----------");
         for (int i = 0; i < bookList.size(); i++) {
             System.out.print((i+1) + ".");
             System.out.println(bookList.get(i).get("name") + " (" + bookList.get(i).get("author")
