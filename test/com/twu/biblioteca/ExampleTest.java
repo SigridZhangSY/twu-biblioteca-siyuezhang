@@ -93,6 +93,8 @@ public class ExampleTest {
         assertThat(bytes.toString(), containsString(s));
     }
 
+
+
     @After
     public void tearDown() throws Exception {
         System.setOut(console);

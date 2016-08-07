@@ -12,14 +12,29 @@ public class Choice {
     }
 
     public Boolean doChoice(String choice){
-        if (Integer.valueOf(choice) > limit || Integer.valueOf(choice) < 1){
+
+        int choiceNum;
+
+        if (choice.equals("quiet")){
+            return true;
+        }
+
+        try {
+            choiceNum = Integer.valueOf(choice);
+        }catch (Exception e){
+            System.out.println("Select a valid option!");
+            return false;
+        }
+
+        if (choiceNum > limit || choiceNum < 1){
             System.out.println("Select a valid option!");
             return false;
         }
         if (choice.equals("1")) {
             new BookList().Show();
-            return true;
+            return false;
         }
+
         return false;
     }
 
