@@ -1,6 +1,7 @@
 package com.twu.biblioteca;
 
 import com.twu.biblioteca.module.Book;
+import com.twu.biblioteca.module.Movie;
 
 import java.util.List;
 import java.util.Scanner;
@@ -8,6 +9,7 @@ import java.util.Scanner;
 public class BibliotecaApp {
     private List<Book> bookList;
     private List<String> menu;
+    private List<Movie> movieList;
 
     public BibliotecaApp() {
     }
@@ -65,6 +67,8 @@ public class BibliotecaApp {
                 returnBook(Integer.valueOf(sc2.nextLine()));
                 break;
             case 4:
+                listMovies();
+            case 5:
                 System.out.println("bye!");
                 break;
             default:
@@ -87,8 +91,20 @@ public class BibliotecaApp {
         System.out.println("Thank you for returning the book");
     }
 
+    public void listMovies() {
+        int index = 1;
+        for (Movie movie : movieList) {
+                System.out.println((index++) + " " + movie.getName() + " " + movie.getDirector() + " " + movie.getYear() + " " + movie.getRating());
+
+        }
+    }
+
     public void setMenu(List<String> menu) {
         this.menu = menu;
+    }
+
+    public void setMovieList(List<Movie> movieList) {
+        this.movieList = movieList;
     }
 }
 
