@@ -7,6 +7,7 @@ public class Movie {
     private String director;
     private String rating;
     private Boolean checkout;
+    private User user;
 
     public Movie(String name, String year, String director, String rating) {
         this.name = name;
@@ -38,5 +39,9 @@ public class Movie {
 
     public Boolean isCheckout() {
         return checkout;
+    }
+
+    public void checkoutTo(User user) {
+        this.user = user;
     }
 }

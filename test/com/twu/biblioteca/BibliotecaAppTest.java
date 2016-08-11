@@ -3,6 +3,7 @@ package com.twu.biblioteca;
 
 import com.twu.biblioteca.module.Book;
 import com.twu.biblioteca.module.Movie;
+import com.twu.biblioteca.module.User;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -250,6 +251,25 @@ public class BibliotecaAppTest {
         bibliotecaApp.listMovies();
 
         assertThat(bytes.toString().contains(movieList.get(0).getName()), is(false));
+    }
+
+    @Test
+    public void should_log_in(){
+        User user = new User("111-1111", "123qwe");
+        bibliotecaApp = new BibliotecaApp();
+        bibliotecaApp.addUser(user);
+        assertThat(bibliotecaApp.userLogin(user.getId(), user.getPass()), is(true));
+    }
+
+    @Test
+    public void should_show_user_info(){
+        User user = new User("111-1111", "123qwe", "John", "ss@gmail.com", "12345678901");
+        bibliotecaApp = new BibliotecaApp();
+        bibliotecaApp.addUser(user);
+        bibliotecaApp.userLogin(user.getId(), user.getPass());
+
+        bibliotecaApp.showUserInfo();
+        assertThat(bytes.toString(), containsString(user.getName()));
     }
 
 

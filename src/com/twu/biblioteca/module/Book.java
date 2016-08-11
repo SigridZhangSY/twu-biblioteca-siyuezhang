@@ -4,6 +4,7 @@ public class Book {
     private String name;
     private String author;
     private String publish;
+    private User user;
 
     public void setCheckout(boolean checkout) {
         this.checkout = checkout;
@@ -36,5 +37,9 @@ public class Book {
 
     public boolean isCheckout() {
         return checkout;
+    }
+
+    public void checkoutTo(User user) {
+        this.user = user;
     }
 }

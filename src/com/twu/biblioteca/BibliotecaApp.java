@@ -2,7 +2,9 @@ package com.twu.biblioteca;
 
 import com.twu.biblioteca.module.Book;
 import com.twu.biblioteca.module.Movie;
+import com.twu.biblioteca.module.User;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -10,8 +12,11 @@ public class BibliotecaApp {
     private List<Book> bookList;
     private List<String> menu;
     private List<Movie> movieList;
+    private List<User> userList = new ArrayList<User>();
+    private User currentUser;
 
     public BibliotecaApp() {
+        currentUser = null;
     }
     public BibliotecaApp(List<Book> bookList) {
         this.bookList = bookList;
@@ -87,6 +92,7 @@ public class BibliotecaApp {
         if (bookList.get(n-1).isCheckout())
             System.out.println("That book is not available");
         bookList.get(n-1).setCheckout(true);
+        bookList.get(n-1).checkoutTo(this.currentUser);
         System.out.println("Thank you! Enjoy the book");
     }
 
@@ -107,6 +113,7 @@ public class BibliotecaApp {
     }
 
     public void checkoutMovie(int n){
+        movieList.get(n-1).checkoutTo(this.currentUser);
         movieList.get(n-1).setCheckout(true);
     }
 
@@ -117,6 +124,32 @@ public class BibliotecaApp {
     public void setMovieList(List<Movie> movieList) {
         this.movieList = movieList;
     }
+
+    public void addUser(User user){
+        userList.add(user);
+    }
+
+    public boolean userLogin(String id, String pass){
+        for (User user:userList){
+            if(user.getId() == id)
+                if(user.checkPass(pass)){
+                    this.currentUser = user;
+                    return true;
+                }
+        }
+        return false;
+    }
+
+    public void showUserInfo(){
+        if (!currentUser.equals(null)) {
+            System.out.println("name:" + currentUser.getName());
+            System.out.println("email:" + currentUser.getEmail());
+            System.out.println("phone:" + currentUser.getPhone());
+        }else{
+            System.out.println("Not log in!");
+        }
+    }
+
 }
 
 
