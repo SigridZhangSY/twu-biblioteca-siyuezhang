@@ -2,6 +2,7 @@ package com.twu.biblioteca;
 
 
 import com.twu.biblioteca.module.Book;
+import com.twu.biblioteca.module.Movie;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -223,6 +224,32 @@ public class BibliotecaAppTest {
         bibliotecaApp.returnBook(1);
 
         assertThat(bytes.toString(), containsString("That is not a valid book to return"));
+    }
+
+    @Test
+    public void should_list_movies(){
+        List<Movie> movieList = new ArrayList<Movie>(){{
+            add(new Movie("2001: A Space Odyssey", "1968", "Stanley Kubrick", "9"));
+        }};
+        bibliotecaApp = new BibliotecaApp();
+        bibliotecaApp.setMovieList(movieList);
+        bibliotecaApp.listMovies();
+
+        assertThat(bytes.toString(), containsString(movieList.get(0).getName()));
+
+    }
+
+    @Test
+    public void should_checkout_movie(){
+        List<Movie> movieList = new ArrayList<Movie>(){{
+            add(new Movie("2001: A Space Odyssey", "1968", "Stanley Kubrick", "9"));
+        }};
+        bibliotecaApp = new BibliotecaApp();
+        bibliotecaApp.setMovieList(movieList);
+        bibliotecaApp.checkoutMovie(1);
+        bibliotecaApp.listMovies();
+
+        assertThat(bytes.toString().contains(movieList.get(0).getName()), is(false));
     }
 
 

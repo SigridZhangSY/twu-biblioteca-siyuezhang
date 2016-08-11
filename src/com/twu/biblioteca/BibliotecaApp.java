@@ -68,7 +68,13 @@ public class BibliotecaApp {
                 break;
             case 4:
                 listMovies();
+                break;
             case 5:
+                System.out.println("choose a movie: ");
+                Scanner sc3 = new Scanner(System.in);
+                checkoutMovie(Integer.valueOf(sc3.nextLine()));
+                break;
+            case 6:
                 System.out.println("bye!");
                 break;
             default:
@@ -94,9 +100,14 @@ public class BibliotecaApp {
     public void listMovies() {
         int index = 1;
         for (Movie movie : movieList) {
+                if(!movie.isCheckout())
                 System.out.println((index++) + " " + movie.getName() + " " + movie.getDirector() + " " + movie.getYear() + " " + movie.getRating());
 
         }
+    }
+
+    public void checkoutMovie(int n){
+        movieList.get(n-1).setCheckout(true);
     }
 
     public void setMenu(List<String> menu) {
